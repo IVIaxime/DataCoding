@@ -85,14 +85,14 @@ namespace lab8
                 "выйти из программы",
                 commandArgs => Environment.Exit(0)));
 
-            commander.AddCommand(new Command("/help", 
-                "вывести список команд", 
+            commander.AddCommand(new Command("/help",
+                "вывести список команд",
                 commandsArgs => PrintCommands(commander.GetCommands())));
 
-            commander.AddCommand(new Command("/encode_shannon", 
-                "закодировать сообщение методом Шеннона-Фано", 
+            commander.AddCommand(new Command("/encode_shannon",
+                "закодировать сообщение методом Шеннона-Фано",
                 new List<string>() { "<путь к файлу с текстом, который нужно закодировать>",
-                    "<путь к файлу, в который записать закодированный текст>" }, 
+                    "<путь к файлу, в который записать закодированный текст>" },
                 commandArgs => EncodeShannonFano(commandArgs[0], commandArgs[1])));
 
             commander.AddCommand(new Command("/decode_shannon",
