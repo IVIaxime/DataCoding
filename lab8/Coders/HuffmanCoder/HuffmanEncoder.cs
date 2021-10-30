@@ -25,6 +25,9 @@ namespace lab8.Coders.HuffmanCoder
 
         public Dictionary<char, string> GetCodingTable(Dictionary<char, double> possibilities)
         {
+            if (possibilities.Count == 1)
+                return new Dictionary<char, string> { { possibilities.First().Key, "0" } };
+
             Dictionary<Dictionary<char, string>, double> codesTable
                 = new Dictionary<Dictionary<char, string>, double>();
             foreach (KeyValuePair<char, double> poss in possibilities)
