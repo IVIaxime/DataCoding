@@ -29,7 +29,7 @@ namespace lab8.Coders.HuffmanCoder
                 = new Dictionary<Dictionary<char, string>, double>();
             foreach (KeyValuePair<char, double> poss in possibilities)
                 codesTable.Add(new Dictionary<char, string> { { poss.Key, "" } }, poss.Value);
-            
+
             while (codesTable.Count > 1)
             {
                 Pair<Dictionary<char, string>, double> last =
