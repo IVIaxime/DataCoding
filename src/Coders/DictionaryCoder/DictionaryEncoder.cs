@@ -48,7 +48,7 @@ namespace coding.Coders.DictionaryCoder
                 bytePosition += (byte)toCurrByte.Length;
                 outputText[outputText.Count - 1] = currByte;
 
-                if (bytePosition > 7)
+                if (bytePosition > 7 && toCurrByte != codingByte)
                 {
                     currByte = bytePosition = 0;
                     string toNextByte = codingByte.Substring(splitIndex);
