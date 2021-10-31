@@ -1,4 +1,4 @@
-﻿using lab8.Coders.RLECoder;
+﻿using coding.Coders.RLECoder;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;

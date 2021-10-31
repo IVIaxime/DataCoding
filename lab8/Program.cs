@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using lab8.Coders;
-using lab8.Coders.ShannonFanoCoder;
-using lab8.Coders.DictionaryCoder;
-using lab8.Coders.RLECoder;
-using lab8.CommandHadler;
-using lab8.Coders.HuffmanCoder;
+using coding.Coders;
+using coding.Coders.ShannonFanoCoder;
+using coding.Coders.DictionaryCoder;
+using coding.Coders.RLECoder;
+using coding.CommandHadler;
+using coding.Coders.HuffmanCoder;
 
-namespace lab8
+namespace coding
 {
     class Program
     {

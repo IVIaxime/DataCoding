@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace lab8.Coders
+namespace coding.Coders
 {
     public abstract class Coder<T1, T2>
     {

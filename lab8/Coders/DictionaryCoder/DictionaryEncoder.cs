@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using lab8.DictionaryExtension;
+using coding.DictionaryExtension;
 
-namespace lab8.Coders.DictionaryCoder
+namespace coding.Coders.DictionaryCoder
 {
     public abstract class DictionaryEncoder : Encoder
     {

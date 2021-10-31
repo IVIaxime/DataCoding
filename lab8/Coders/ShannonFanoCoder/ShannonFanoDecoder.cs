@@ -1,11 +1,11 @@
-﻿using lab8.Coders.DictionaryCoder;
+﻿using coding.Coders.DictionaryCoder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab8.Coders.ShannonFanoCoder
+namespace coding.Coders.ShannonFanoCoder
 {
     public class ShannonFanoDecoder : DictionaryDecoder
     {

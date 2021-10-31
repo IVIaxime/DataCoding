@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab8.Coders.DictionaryCoder
+namespace coding.Coders.DictionaryCoder
 {
     public abstract class DictionaryDecoder : Decoder
     {

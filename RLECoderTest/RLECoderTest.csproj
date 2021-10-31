@@ -56,9 +56,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\lab8\lab8.csproj">
+    <ProjectReference Include="..\lab8\src.csproj">
       <Project>{bf71bcd4-41f1-4c0e-9b91-2478fb9acc84}</Project>
-      <Name>lab8</Name>
+      <Name>src</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

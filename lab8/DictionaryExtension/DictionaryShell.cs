@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab8.DictionaryExtension
+namespace coding.DictionaryExtension
 {
     public static class DictionaryShell
     {

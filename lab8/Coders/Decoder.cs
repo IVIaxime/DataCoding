@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab8.Coders
+namespace coding.Coders
 {
     public abstract class Decoder : Coder<string, byte[]>, IDecodable
     {

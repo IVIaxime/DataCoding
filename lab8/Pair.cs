@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace lab8
+namespace coding
 {
     public class Pair<T1, T2>
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab8.Coders.RLECoder
+namespace coding.Coders.RLECoder
 {
     public class RLEDecoder : Decoder
     {
