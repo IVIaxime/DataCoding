@@ -10,6 +10,7 @@ using coding.Coders.DictionaryCoder;
 using coding.Coders.RLECoder;
 using coding.CommandHadler;
 using coding.Coders.HuffmanCoder;
+using lab8.Coders.ArithmeticCoder;
 
 namespace coding
 {
@@ -76,6 +77,21 @@ namespace coding
             Console.WriteLine("Сообщение декодировано");
         }
 
+        static void EncodeArithmetic(string inputFilePath, string outputFilePath)
+        {
+            ArithmeticEncoder huffmanEncoder = new ArithmeticEncoder(inputFilePath, outputFilePath);
+            huffmanEncoder.Encode();
+            Console.WriteLine("Сообщение закодировано\nЦена кодирования: {0 :F2}", huffmanEncoder.GetEncodingPrice());
+            Console.WriteLine("Степень сжатия: {0 :F2} %\n", huffmanEncoder.GetCompressionCoeff());
+        }
+
+        static void DecodeArithmetic(string inputFilePath, string outputFilePath)
+        {
+            ArithmeticDecoder huffmanEncoder = new ArithmeticDecoder(inputFilePath, outputFilePath);
+            huffmanEncoder.Decode();
+            Console.WriteLine("Сообщение декодировано");
+        }
+
 
         static void Main(string[] args)
         {
@@ -124,6 +140,18 @@ namespace coding
                 new List<string>() { "<путь к файлу с текстом, который нужно декодировать>",
                     "<путь к файлу, в который записать декодированный текст>" },
                 commandArgs => DecodeHuffman(commandArgs[0], commandArgs[1])));
+
+            commander.AddCommand(new Command("/encode_arithmetic",
+                "закодировать сообщение арифметическим методом",
+                new List<string>() { "<путь к файлу с текстом, который нужно закодировать>",
+                    "<путь к файлу, в который записать закодированный текст>" },
+                commandArgs => EncodeArithmetic(commandArgs[0], commandArgs[1])));
+
+            commander.AddCommand(new Command("/decode_arithmetic",
+                "декодировать сообщение арифметическим методом",
+                new List<string>() { "<путь к файлу с текстом, который нужно декодировать>",
+                    "<путь к файлу, в который записать декодированный текст>" },
+                commandArgs => DecodeArithmetic(commandArgs[0], commandArgs[1])));
 
 
             Console.WriteLine("Введите /help для вывода списка команд");

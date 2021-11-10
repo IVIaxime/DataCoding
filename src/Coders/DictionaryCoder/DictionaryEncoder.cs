@@ -34,12 +34,26 @@ namespace coding.Coders.DictionaryCoder
             codesTable = newCodesTable;
 
             string str = Encoding.GetEncoding(1251).GetString(ReadFile());
-            byte bytePosition = 0;
+            byte bytePosition;
+            List<byte> outputText = encodeBytes(str, out bytePosition);
+
+            List<byte> outputDictionary = EncodeDictionary(bytePosition);
+
+            List<byte> output = new List<byte>();
+            output.AddRange(outputDictionary);
+            output.AddRange(outputText);
+
+            WriteFile(output);
+        }
+
+        protected List<byte> encodeBytes(string bytes, out byte bytePosition)
+        {
+            bytePosition = 0;
             List<byte> outputText = new List<byte>();
             outputText.Add(0);
-            for (int i = 0; i < str.Length; ++i)
+            for (int i = 0; i < bytes.Length; ++i)
             {
-                string codingByte = codesTable[str[i]];
+                string codingByte = codesTable[bytes[i]];
                 int splitIndex = Math.Min(8 - bytePosition, codingByte.Length);
                 string toCurrByte = codingByte.Substring(0, splitIndex);
 
@@ -59,13 +73,7 @@ namespace coding.Coders.DictionaryCoder
 
             }
 
-            List<byte> outputDictionary = EncodeDictionary(bytePosition);
-
-            List<byte> output = new List<byte>();
-            output.AddRange(outputDictionary);
-            output.AddRange(outputText);
-
-            WriteFile(output);
+            return outputText;
         }
 
         private List<byte> EncodeDictionary(byte lastByteUsed)
@@ -82,7 +90,7 @@ namespace coding.Coders.DictionaryCoder
             int maxLength = -1;
             for (int i = 0; i < codesTable.Count - 1; ++i)
             {
-                byte currCode = (byte)BinaryToDecimal(codesTable.ElementAt(i).Value);
+                byte currCode = byte.Parse(Calc.ConvertToBase(codesTable.ElementAt(i).Value, 2, 10, 1e-10));
                 if (currCode > 127)
                     maxLength = 8;
                 if (maxLength != 8)
@@ -93,13 +101,13 @@ namespace coding.Coders.DictionaryCoder
                 if (i == 0)
                 {
                     encodedDictionary[1] = (byte)(((8 - codesTable.ElementAt(i + 1).Value.Length) << 5)
-                    + BinaryToDecimal(codesTable.ElementAt(i).Value));
+                    + int.Parse(Calc.ConvertToBase(codesTable.ElementAt(i).Value, 2, 10, 1e-10)));
                     encodedDictionary[1] |= (byte)((lastByteUsed - 1) >> 1);
                     encodedDictionary[1] |= (byte)((8 - codesTable.ElementAt(i).Value.Length) << 2);
                 }
             }
-            encodedDictionary.Add((byte)BinaryToDecimal(
-                codesTable.ElementAt(codesTable.Count - 1).Value));
+            encodedDictionary.Add(byte.Parse(Calc.ConvertToBase(
+                codesTable.ElementAt(codesTable.Count - 1).Value, 2, 10, 1e-10)));
             encodedDictionary[encodedDictionary.Count - 1] = (byte)((
                 encodedDictionary[encodedDictionary.Count - 1] & 254) | ((lastByteUsed - 1) & 1));
             encodedDictionary.Add(Encoding.GetEncoding(1251).GetBytes(
@@ -107,6 +115,15 @@ namespace coding.Coders.DictionaryCoder
 
             return encodedDictionary;
         }
+
+        protected List<byte> WriteAllBytes(string bytes)
+        {
+            List<byte> res = new List<byte>();
+            for (int i = 0; i < bytes.Length; i += 8)
+                res.Add(WriteByte(bytes.Substring(i, Math.Min(8, bytes.Length - i)), 0, 0));
+            return res;
+        }
+
         private byte WriteByte(string strByte, byte codingByte, byte position)
         {
             int start = position;

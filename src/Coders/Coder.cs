@@ -24,30 +24,6 @@ namespace coding.Coders
         public abstract T2 ReadFile();
 
 
-        protected int BinaryToDecimal(string binaryNum)
-        {
-            int decNum = 0;
-
-            for (int i = binaryNum.Length - 1; i >= 0; --i)
-                decNum += int.Parse(binaryNum[i].ToString()) * (int)Math.Pow(2, binaryNum.Length - i - 1);
-
-            return decNum;
-        }
-
-        protected byte[] DecimalToBinary(int decNumber)
-        {
-            if (decNumber == 0)
-                return new byte[] { 0 };
-            int binNumSize = (int)Math.Log(decNumber, 2) + 1;
-            byte[] binaryNumber = new byte[binNumSize];
-
-            for (int i = 0; i < binNumSize; ++i, decNumber >>= 1)
-                binaryNumber[binNumSize - i - 1] = (byte)(decNumber & 1);
-
-            return binaryNumber;
-        }
-
-
         public string InputFilePath
         {
             get

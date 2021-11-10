@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calc.cs" />
+    <Compile Include="Coders\ArithmeticCoder\ArithmeticDecoder.cs" />
+    <Compile Include="Coders\ArithmeticCoder\ArithmeticEncoder.cs" />
     <Compile Include="Coders\Coder.cs" />
     <Compile Include="Coders\Decoder.cs" />
     <Compile Include="Coders\DictionaryCoder\DictionaryDecoder.cs" />

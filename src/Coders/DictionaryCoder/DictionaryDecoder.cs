@@ -69,14 +69,14 @@ namespace coding.Coders.DictionaryCoder
 
             for (int i = 3; i < dicSize * 2 - 1; i += 2)
             {
-                key = string.Join("", DecimalToBinary(bytes[i] & (byte)(255 >> nextUnusedBits)));
+                key = Calc.ConvertToBase((bytes[i] & (byte)(255 >> nextUnusedBits)).ToString(), 10, 2, 1e-10);
                 key = new string('0', 8 - nextUnusedBits - key.Length) + key;
                 dictionary.Add(key, Encoding.GetEncoding(1251).GetChars(new byte[] { bytes[i + 1] })[0]);
                 nextUnusedBits = bytes[i] >> (8 - nextUnusedBits);
             }
             lastUnusedBits = (byte)((lastUnusedBits << 1) | (bytes[dicSize * 2 - 1] & 1));
             bytes[dicSize * 2 - 1] |= 1;
-            key = string.Join("", DecimalToBinary(bytes[dicSize * 2 - 1] & (byte)(255 >> nextUnusedBits)));
+            key = Calc.ConvertToBase((bytes[dicSize * 2 - 1] & (byte)(255 >> nextUnusedBits)).ToString(), 10, 2, 1e-10);
             key = new string('0', 8 - nextUnusedBits - key.Length) + key;
             dictionary.Add(key, Encoding.GetEncoding(1251).GetChars(new byte[] { bytes[dicSize * 2] })[0]);
 
