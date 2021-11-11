@@ -30,7 +30,7 @@ namespace coding.Coders.ArithmeticCoder
 
             WriteFile(output);
         }
-        ///decode_arithmetic encoded.txt decoded.txt
+        
         private Dictionary<char, Pair<double, double>> ReadDictionary(byte[] bytes)
         {
             Dictionary<char, Pair<double, double>> dictionary = new Dictionary<char, Pair<double, double>>();
