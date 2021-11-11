@@ -10,7 +10,7 @@ using coding.Coders.DictionaryCoder;
 using coding.Coders.RLECoder;
 using coding.CommandHadler;
 using coding.Coders.HuffmanCoder;
-using lab8.Coders.ArithmeticCoder;
+using coding.Coders.ArithmeticCoder;
 
 namespace coding
 {

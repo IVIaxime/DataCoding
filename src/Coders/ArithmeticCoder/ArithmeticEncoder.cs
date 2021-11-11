@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab8.Coders.ArithmeticCoder
+namespace coding.Coders.ArithmeticCoder
 {
     public class ArithmeticEncoder : DictionaryEncoder
     {
@@ -18,6 +18,8 @@ namespace lab8.Coders.ArithmeticCoder
         public override void Encode()
         {
             string input = Encoding.GetEncoding(1251).GetString(ReadFile());
+            if (input.Length > 16)
+                throw new FormatException("Текст должен быть не длиннее 16-ти символов");
             Dictionary<char, double> possibilities = GetSymbolPossibilities(input);
             possibilities = possibilities.OrderBy(x => x.Value).Reverse().ToDictionary(pair => pair.Key, pair => pair.Value);
             Dictionary<char, Pair<double, double>> intervals = getIntervals(possibilities);
@@ -25,7 +27,7 @@ namespace lab8.Coders.ArithmeticCoder
             Pair<double, double> lastBorders = createTable(input, intervals);
             double average = (lastBorders.First + lastBorders.Second) / 2;
             double eps = lastBorders.Second - average;
-            string text = Calc.ConvertToBase(average.ToString(), 10, 2, eps).Substring(2);
+            string text = Calc.ConvertToBase(average.ToString(), 10, 2, eps / 2).Substring(2);
             List<byte> encodedText = WriteAllBytes(text);
             List<byte> encodedDictionary = EncodeDictionary(intervals, eps, input.Length);
             List<byte> output = new List<byte>();
@@ -55,7 +57,7 @@ namespace lab8.Coders.ArithmeticCoder
 
             Dictionary<char, string> encodedIntervals = new Dictionary<char, string>();
             foreach (KeyValuePair<char, Pair<double, double>> interval in intervals)
-                encodedIntervals.Add(interval.Key, Calc.ConvertToBase(interval.Value.First.ToString(), 10, 2, eps / 10));
+                encodedIntervals.Add(interval.Key, Calc.ConvertToBase(interval.Value.First.ToString(), 10, 2, eps / 40));
             byte intervalSize = (byte)Math.Ceiling(encodedIntervals.Max(x => (x.Value.Length - 2)) / 8d);
 
             output.Add((byte)intervals.Count);

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using coding;
 
-namespace lab8.Coders.ArithmeticCoder
+namespace coding.Coders.ArithmeticCoder
 {
     public class ArithmeticDecoder : DictionaryDecoder
     {
